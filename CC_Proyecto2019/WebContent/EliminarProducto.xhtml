@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<link rel="stylesheet" type="text/css" href="CSS/Productos.css" media="screen" />
+
+	<title>Producto: Eliminar Producto</title>
+
+
+</h:head>
+<body>
+
+	
+	<h:form class="form">
+		
+		
+			<h1>Eliminar Producto</h1>
+		
+		
+		
+		
+		<fieldset >
+			<legend id="legendSelect"> Seleccionar producto a Eliminar </legend>
+
+		 
+		 <div class="selectBox">
+		<p:selectOneMenu style="width: 250px" value="#{prodMB.select}">
+		<f:selectItem itemValue="1" itemLabel="--- Seleccionar ---" />
+		<f:selectItems value="#{prodMB.combo}"></f:selectItems>
+		</p:selectOneMenu>
+		
+		<h:commandButton class="mostrar"  value="Mostrar" action="#{prodMB.cargarDatos()}"></h:commandButton>
+		
+		</div>
+		
+		</fieldset>
+		
+		
+	
+		<fieldset>
+			<legend> Caracteristicas principales </legend>
+		<label for="lbl_nombre" class="form-label">Nombre </label>
+		<p:inputText style="width: 100%"  disabled="true" 	value="#{prodMB.prod_Nombre}"/>
+		
+		<label for="lbl_precio" class="form-label">Precio ($ Uruguayos)</label>
+		<p:inputText style="width: 100%" disabled="true" value="#{prodMB.prod_Precio}" />
+		
+		<label for="lbl_peso" class="form-label">Peso (gr)</label>
+		<p:inputText style="width: 100%" disabled="true" value="#{prodMB.prod_Peso}"/>
+		
+		<label for="lbl_familia" class="form-label">Familia </label> 
+		<p:inputText style="width: 100%" disabled="true" value="#{prodMB.familia}"/>
+		
+		
+</fieldset>
+			
+			<fieldset>
+			<legend> Fechas </legend>
+			
+			<label for="fechvenn" class="form-label">Fecha de Vencimiento</label>
+		<p:calendar id="fechaVenc" disabled="true" value="#{prodMB.prod_Fven}"  pattern="dd/MM/yyyy"></p:calendar>
+	
+
+		<label for="fechelab" class="form-label">Fecha de Elaboración</label>
+		
+		<p:calendar id="fechaElab" disabled="true" value="#{prodMB.prod_Felab}" pattern="dd/MM/yyyy"></p:calendar>
+				 
+				 </fieldset>
+
+		<fieldset>
+			<legend> Stock </legend>
+
+			<label for="lbl_stkmin" class="form-label">Stock mínimo</label>
+			<p:inputText style="width: 100%" disabled="true" value="#{prodMB.prod_Stkmin}" />
+
+			<label for="lbl_stkmax" class="form-label">Stock máximo</label>
+			<p:inputText style="width: 100%" disabled="true" value="#{prodMB.prod_Stktotal}" />
+
+		</fieldset>
+
+		<fieldset>
+			<legend> Caracteristicas secundarias </legend>
+			
+			<label for="lbl_peso" class="form-label">Lote </label>
+		<p:inputText style="width: 100%" disabled="true" value="#{prodMB.prod_Lote}"/>
+		
+		<label for="lbl_estiba" class="form-label">Estiba</label>
+		<p:inputText style="width: 100%" disabled="true" value="#{prodMB.prod_Estiba}" />
+		
+		<label for="lbl_volumen" class="form-label">Volumen (ml) </label>
+		<p:inputText style="width: 100%" disabled="true" value="#{prodMB.prod_Vol}"/>
+		
+		<label for="lbl_segm" class="form-label">Segmentación</label>
+		<p:inputText style="width: 100%"	disabled="true" value="#{prodMB.prod_Segmentac}" />
+
+		</fieldset>
+
+			<p:growl showDetail="true" />
+
+			<p:commandButton class="botton" value="Borrar"
+				action="#{prodMB.bajaProducto()}" update="@form">
+				<p:confirm header="Confirmar acción"
+					message="Seguro que desea dar de baja este producto?"
+					icon="ui-icon-alert" />
+			</p:commandButton>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				<p:commandButton value="Sí" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+
+			</p:confirmDialog>
+		
+		</h:form>
+		
+		<h:form class="form-cancelar">
+		<h:commandButton class="btnCancel" style="background: red;" value="Cancelar" action="Principal"/>
+	</h:form>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<link rel="stylesheet" type="text/css" href="CSS/Productos.css" media="screen" />
+
+
+	<title>Producto: Modificar datos</title>
+
+
+</h:head>
+<body>
+
+	
+	<h:form class="form" autocomplete="off">
+		
+		
+			<h1>Modificar datos del Producto</h1>
+		
+		
+		
+		
+		<fieldset >
+			<legend id="legendSelect"> Seleccionar producto a Modificar </legend>
+
+		 
+		 <div class="selectBox">
+		<p:selectOneMenu style="width: 250px" value="#{prodMB.select}">
+		<f:selectItem itemValue="1" itemLabel="--- Seleccionar ---" />
+		<f:selectItems value="#{prodMB.combo}"></f:selectItems>
+		</p:selectOneMenu>
+		
+		<h:commandButton class="mostrar"  value="Mostrar" action="#{prodMB.cargarDatos()}"></h:commandButton>
+		
+		</div>
+		
+		</fieldset>
+		
+		
+	
+		<fieldset>
+			<legend> Caracteristicas principales </legend>
+		<label for="lbl_nombre" class="form-label">Nombre </label>
+		<p:inputText style="width: 100%" disabled="true" a:placeholder="Ingresar nombre"	value="#{prodMB.prod_Nombre}" title="Nombre"/>
+		
+		<label for="lbl_precio" class="form-label">Precio ($ Uruguayos)</label>
+		<p:inputNumber a:placeholder="Ingresar precio" value="#{prodMB.prod_Precio}" title="Precio"/>
+		
+		<label for="lbl_peso" class="form-label">Peso (gr)</label>
+		<p:inputNumber a:placeholder="Ingresar peso" value="#{prodMB.prod_Peso}" title="Peso"/>
+		
+		<label for="lbl_familia" class="form-label">Familia </label> 
+		<p:selectOneMenu style="width: 100%" value="#{prodMB.familia}">
+		<f:selectItem itemValue="1"
+					itemLabel="--- Seleccionar familia de producto ---" />
+		<f:selectItems value="#{famiMB.combo}"></f:selectItems>
+		</p:selectOneMenu>
+		
+		
+</fieldset>
+			
+			<fieldset>
+			<legend> Fechas </legend>
+			
+			<label for="fechvenn" class="form-label">Fecha de Vencimiento</label>
+		<p:calendar id="fechaVenc"
+				value="#{prodMB.prod_Fven}" navigator="true" pattern="dd/MM/yyyy" placeholder="dd/MM/yyyy"
+				requiredMessage="Este campo no puede quedar vacío: Fecha de Vencimiento"
+				converterMessage="Error en formato de fecha: Fecha de Vencimiento"
+				 readonlyInput="true" showOn="button" title="Fecha de Vencimiento" ></p:calendar>
+	
+
+		<label for="fechelab" class="form-label">Fecha de Elaboración</label>
+		<p:calendar id="fechaElab"
+				value="#{prodMB.prod_Felab}" navigator="true" pattern="dd/MM/yyyy" placeholder="dd/MM/yyyy"
+				requiredMessage="Este campo no puede quedar vacío: Fecha de Elaboración"
+				converterMessage="Error en formato de fecha: Fecha de Elaboración"
+				 readonlyInput="true" showOn="button" title="Fecha de Elaboración" ></p:calendar>
+				 
+				 </fieldset>
+
+		<fieldset >
+			<legend> Stock </legend>
+
+			<label for="lbl_stkmin" class="form-label">Stock mínimo</label>
+			<p:inputNumber a:placeholder="Ingresar stock mínimo"
+				value="#{prodMB.prod_Stkmin}" title="Stock mínimo" />
+
+			<label for="lbl_stkmax" class="form-label">Stock máximo</label>
+			<p:inputNumber a:placeholder="Ingresar stock máximo"
+				value="#{prodMB.prod_Stktotal}" title="Stock máximo"  />
+
+		</fieldset>
+
+		<fieldset >
+			<legend> Caracteristicas secundarias </legend>
+			
+			<label for="lbl_peso" class="form-label">Lote </label>
+		<p:inputText style="width: 100%" a:placeholder="Ingresar lote" value="#{prodMB.prod_Lote}" title="Lote"  autocomplete="off"/>
+		
+		<label for="lbl_estiba" class="form-label">Estiba</label>
+		<p:inputText style="width: 100%" a:placeholder="Ingresar tipo estiba" value="#{prodMB.prod_Estiba}" title="Estiba"  autocomplete="off"/>
+		
+		
+		<label for="lbl_segm" class="form-label">Segmentación</label>
+		<p:inputText style="width: 100%"	a:placeholder="Ingresar tipo segmentación" value="#{prodMB.prod_Segmentac}" title="Segmentación"  autocomplete="off"/>
+
+		<label for="lbl_volumen" class="form-label">Volumen (ml) </label>
+		<p:inputNumber  a:placeholder="Ingresar volumen" value="#{prodMB.prod_Vol}" title="Volumen" />
+		
+		
+		</fieldset>
+
+			
+			
+			<p:growl showDetail="true"/>
+			
+			<p:commandButton class="botton" value="Confirmar modificación"
+				action="#{prodMB.modificar()}" update="@form">
+				<p:confirm header="Confirmar acción"
+					message="Seguro que desea modificar los datos de este producto?"
+					icon="ui-icon-alert"/>
+			</p:commandButton>
+			
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				<p:commandButton value="Sí" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+
+			</p:confirmDialog>
+		
+		</h:form>
+		
+		<h:form class="form-cancelar">
+		<h:commandButton class="btnCancel" style="background: red;" value="Cancelar modificación" action="Principal"/>
+	</h:form>
+</body>
+</html>

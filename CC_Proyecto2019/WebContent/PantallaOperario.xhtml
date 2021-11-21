@@ -1,0 +1,175 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+<link rel="stylesheet" type="text/css" href="CSS/Principal.css" media="screen" />
+
+
+<title>Gestión de Logística y Transporte</title>
+</h:head>
+
+
+<body>
+
+<aside>
+
+
+		<div id="logo">
+			<img src="Imagenes/ClawCode.png" alt="" />
+			<h5>Gestión de Logística y Transporte</h5>
+		</div>
+
+
+		<ul>
+			<li><a>Gestión</a></li>
+			<li><a href="javascript:abrirN()">Acerca de Nosotros</a></li>
+			<li><a href="javascript:abrirA()">Sobre nuestra aplicación</a></li>
+			<li><a href="javascript:abrir()">Contacto</a></li>
+		</ul>
+
+		<a href="IniciarSesion.xhtml"> <input class="salir" type="button"
+			value="Cerrar Sesión"> </input>
+		</a>
+
+	</aside>
+		
+	<section>
+		
+		<h1 id="titulo">Gestión de Transporte y Logística</h1>
+		
+		<article>
+
+
+			<img class="tam" src="Imagenes/reportes.jpg" align="left"></img>
+
+			<h2>REPORTES</h2>
+			<ul>
+				<li><a href="ImprimirReportes.xhtml">Imprimir Reporte</a></li>
+			</ul>
+
+
+		</article>
+	</section>
+
+	<footer> </footer>
+
+	<div id="principalMain">
+
+		<div class="ventana" id="ventana">
+			<div class="cerrar">
+				<a href="javascript: cerrar()"><img src="Imagenes/error.png"></img></a>
+			</div>
+			<h1>Contacto</h1>
+			<ul class="contacto">
+				<br />
+				<h3>
+					Correo Electronico: <a>claw.code@gmail.com</a>
+				</h3>
+				<h3>
+					Localidad: <a>Fray Bentos</a>
+				</h3>
+				<h3>
+					Dirección: <a>Barrio Anglo 2323</a>
+				</h3>
+				<h3>
+					Telefono: <a>4567 9999</a>
+				</h3>
+				<br />
+
+			</ul>
+		</div>
+
+		<div class="ventana" id="vNosotros">
+			<div class="cerrar">
+				<a href="javascript: cerrarN()"><img src="Imagenes/error.png" /></a>
+			</div>
+			<ul class="nosotros">
+				<br />
+				<h1>Acerca de Nosotros</h1>
+				<br />
+				<h3>Quienes somos:</h3>
+				<h5>
+					Somos estudiantes de la Licenciatura en Tecnologías de la
+					Información(LTI), en la Universidad Tecnológica de Fray
+					Bentos(UTEC-ITR Suroeste).
+					<p></p>
+					Desde el comienzo de la carrera formamos un grupo, denominado
+					ClawCode, este grupo fue creado con el propósito de realizar
+					durante toda la carrera una aplicación de escritorio, web y móvil.
+				</h5>
+				<h3>Integrantes del grupo:</h3>
+				<h5>
+					Enzo Manfredi
+					<p></p>
+					Andrés Gutierrez
+					<p></p>
+					Tomas Fernandez
+					<p></p>
+					Julio Roldan
+					<p></p>
+					Gabriel Cortacans
+				</h5>
+			</ul>
+		</div>
+
+		<div class="ventana" id="vApp">
+			<div class="cerrar">
+				<a href="javascript: cerrarA()"><img src="Imagenes/error.png" /></a>
+			</div>
+			<ul class="app">
+				<br />
+				<h1>Acerca de la Aplicación</h1>
+				<br />
+				<h3>Características:</h3>
+				<h5>Dicha aplicación se destaca por su interfaz gráfica
+					amigable y fácil de utilizar. Ofrece una solución para el manejo y
+					recepción del producto.</h5>
+				<h3>Funcionalidades:</h3>
+				<h5>
+					Productos: Registrar Productos, Modificar Productos, Eliminar
+					Productos <br /> Recepción: Registrar Recepción, Modificar
+					Recepción, Eliminar Recepción <br /> Reportes: Generar lista de
+					reportes
+				</h5>
+			</ul>
+		</div>
+
+	</div>
+
+	<script>
+
+function abrir() {
+	document.getElementById("ventana").style.display="block";
+}
+
+function cerrar() {
+	document.getElementById("ventana").style.display="none";
+}
+
+
+function abrirN() {
+	document.getElementById("vNosotros").style.display="block";
+}
+
+function cerrarN() {
+	document.getElementById("vNosotros").style.display="none";
+}
+
+function abrirA() {
+	document.getElementById("vApp").style.display="block";
+}
+
+function cerrarA() {
+	document.getElementById("vApp").style.display="none";
+}
+
+
+</script>
+
+</body>
+</html>

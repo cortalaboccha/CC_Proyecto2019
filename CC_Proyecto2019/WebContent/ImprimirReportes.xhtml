@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"> 
+
+
+<h:head>
+
+<link rel="stylesheet" type="text/css" href="CSS/Reportes.css" media="screen" />
+<title>Recepción: Modificar datos de Recepción</title>
+
+</h:head> 
+<body > 
+<div class="contenedor">
+<h:form class="form">
+
+<div class= "form-header">
+<br />
+<h1 class="form-title">Imprimir rango de Almacenamientos</h1>
+</div>
+<br />
+<br />
+<br />
+
+<h:panelGrid columns="4" style="margin-left: 27%; text-align: center;">
+
+<h:column>
+<label for="lbl_RenPed" class="form-label" style="color: white; font-size: 22px">Código Inicial</label>
+<p:selectOneMenu style="width: 230px" value="#{reportes.inicial}">
+<f:selectItems value="#{reportes.cInicial}"></f:selectItems>
+</p:selectOneMenu>
+</h:column>
+<h:column></h:column>
+<h:column>
+<label for="lbl_RenPed" class="form-label" style="color: white; font-size: 22px">Código Final </label>
+<p:selectOneMenu style="width: 230px" value="#{reportes.finall}">
+<f:selectItems value="#{reportes.cFinal}"></f:selectItems>
+</p:selectOneMenu>
+</h:column>
+
+</h:panelGrid>
+
+<h:commandButton class="imprimir" value="Imprimir" action="#{reportes.ejecutar()}"/>
+
+
+
+<br />
+<br />
+
+
+<p:dataTable var="alma" value="#{reportes.rlist}" >
+    <p:column id= "column" headerText="Código">
+        <h:outputText value="#{alma.alma_Id}" />
+    </p:column>
+ 
+    <p:column headerText="Descripción">
+        <h:outputText value="#{alma.descripcion}" />
+    </p:column>
+ 
+    <p:column headerText="Volumen">
+        <h:outputText value="#{alma.alma_volumen}" />
+    </p:column>
+ 
+    <p:column headerText="Capacidad de Estiba">
+        <h:outputText value="#{alma.alma_capEstiba}" />
+    </p:column>
+    
+    <p:column headerText="Capacidad de Peso">
+        <h:outputText value="#{alma.alma_capPeso}" />
+    </p:column>
+    
+    <p:column headerText="Local">
+        <h:outputText value="#{alma.local.loc_id}" />
+    </p:column>
+    
+</p:dataTable>
+
+
+
+<br />
+<br />
+<br />
+
+<h:commandButton class="btnCancel" value="Volver" action="Principal"/>
+
+
+
+</h:form>
+
+
+
+</div>
+
+</body> 
+</html>

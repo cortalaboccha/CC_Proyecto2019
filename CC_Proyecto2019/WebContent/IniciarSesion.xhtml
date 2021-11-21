@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+<link rel="stylesheet" type="text/css" href="CSS/IniciarSesion.css" media="screen" />
+	<title>Inicio de Sesión</title>
+	
+
+</h:head>
+
+<body>
+	<div class="cuadroLogin">
+		<h:form action="Principal.xhtml" method="post">
+
+			<img src="Imagenes/isesion.png" id="avatar" alt="Avatar Image"></img>
+			<h1>Iniciar Sesión</h1>
+
+			<br />
+
+
+			<label>Usuario</label>
+			
+			<h:inputText class="input" id="usuario" value="#{usuario.nomAcceso}"
+				required="true" requiredMessage="Debe ingresar un usuario"
+				label="Usuario" />
+			<h:panelGrid columns="2">
+				<h:message for="usuario" style="color:red; font-size: 12px;" />
+			</h:panelGrid>
+			<br />
+			<br />
+			
+			
+			<label>Contraseña</label>
+
+			<h:inputSecret class="input" id="password" type="password"
+				value="#{usuario.contra}" required="true"
+				requiredMessage="Debe ingresar una contraseña" label="Password" />
+			<h:panelGrid columns="2">
+				<h:message for="password" style="color:red; font-size: 12px" />
+			</h:panelGrid>
+			
+			
+
+			<div class="cuadroBtn">
+			<p:growl showDetail="true" />
+					  <h:commandButton class="botton" value="Ingresar" action="#{usuario.validarUsuario(usuario.nomAcceso,usuario.contra)}" />
+			</div>
+
+
+			<h5>Sistema de Transporte y Logística</h5>
+			<h5>Claw Code</h5>
+
+
+		</h:form>
+	</div>
+</body>
+
+</html>

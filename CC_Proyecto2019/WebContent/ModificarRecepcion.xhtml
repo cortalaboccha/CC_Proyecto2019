@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<link rel="stylesheet" type="text/css" href="CSS/Recepcion.css"
+		media="screen" />
+	<title>Recepción: Modificar datos de Recepción</title>
+
+</h:head>
+<body>
+
+
+	<h:form>
+
+
+		<h1>Modificar datos de la Recepción</h1>
+
+<fieldset >
+			<legend id="legendSelect"> Seleccionar Recepción a modificar </legend>
+		<div class="select">
+			<p:selectOneMenu style="width: 230px" value="#{receMB.select}">
+				<f:selectItem itemValue="1" itemLabel="--- Seleccionar ---" />
+				<f:selectItems value="#{receMB.combo}"></f:selectItems>
+			</p:selectOneMenu>
+			<h:commandButton class="mostrar" value="Mostrar"
+				action="#{receMB.mostrarDatos()}" />
+		</div>
+		</fieldset>
+
+		<fieldset>
+			<legend>Datos generales</legend>
+			<label for="lbl_RenPed" class="form-label">Renglon Pedido </label>
+			<h:inputText class="form-input" disabled="true"
+				a:placeholder="Registro del Pedido" value="#{receMB.renglon}" />
+
+			<label for="lbl_Alm" class="form-label">Almacenamiento </label>
+			<p:selectOneMenu style="width: 440px" class="combo"
+				value="#{receMB.alma}">
+				<f:selectItem itemValue="1"
+					itemLabel="--- Seleccionar el deposito de almacenamiento ---" />
+				<f:selectItems value="#{almMB.combo}"></f:selectItems>
+			</p:selectOneMenu>
+
+		</fieldset>
+		<fieldset>
+			<legend>Fechas</legend>
+			<label for="lbl_FecRec" class="form-label">Fecha de Recepción
+			</label>
+			<p:calendar style="width: 330px" id="fechaElab"
+				value="#{receMB.fecha}" navigator="true" pattern="dd/MM/yyyy"
+				requiredMessage="Este campo no puede quedar vacío: Fecha de Recepción"
+				converterMessage="Error en formato de fecha: Fecha de Recepción"
+				readonlyInput="true" showOn="button"></p:calendar>
+
+		</fieldset>
+
+		<label for="lbl_Com" class="form-label">Comentario: </label>
+		<h:inputTextarea class="form-textarea" id="comentario"
+			value="#{receMB.comentario}" />
+
+
+		
+				
+			<p:growl showDetail="true"/>
+			
+			<p:commandButton class="btnConfirm" value="Confirmar modificación"
+				action="#{receMB.modificarRecepcion()}" update="@form">
+				<p:confirm header="Confirmar acción"
+					message="Seguro que desea modificar los datos de esta Recepción?"
+					icon="ui-icon-alert"/>
+			</p:commandButton>
+			
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				<p:commandButton value="Sí" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+
+			</p:confirmDialog>
+			
+			<h:commandButton class="btnCancel" value="Cancelar modificación" action="Principal" />
+
+
+	</h:form>
+
+</body>
+</html>

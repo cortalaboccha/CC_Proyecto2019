@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet" type="text/css" href="CSS/Recepcion.css"
+		media="screen" />
+
+	<title>Recepción: Eliminar Recepción</title>
+
+</h:head>
+<body>
+
+
+	<h:form>
+
+		<h1>Eliminar Recepción</h1>
+
+<fieldset >
+			<legend id="legendSelect"> Seleccionar Recepción a eliminar </legend>
+
+		<div class="select">
+			<p:selectOneMenu style="width: 230px" value="#{receMB.select}">
+				<f:selectItem itemValue="1" itemLabel="--- Seleccionar ---" />
+				<f:selectItems value="#{receMB.combo}"></f:selectItems>
+			</p:selectOneMenu>
+			<h:commandButton class="mostrar" value="Mostrar"
+				action="#{receMB.mostrarDatos()}" />
+		</div>
+		
+		</fieldset>
+
+		<fieldset>
+			<legend>Datos generales</legend>
+		<label for="lbl_RenPed" class="form-label">Renglon Pedido </label>
+		<h:inputText class="form-input" disabled="true"
+			a:placeholder="Registro del Pedido" value="#{receMB.renglon}" />
+
+		<label for="lbl_Alm" class="form-label">Almacenamiento </label>
+		<h:inputText class="form-input" disabled="true"
+			a:placeholder="Ingresar almacenamiento" value="#{receMB.alma}" />
+
+
+		</fieldset>
+		
+		<fieldset>
+			<legend>Fechas</legend>
+		<label for="lbl_FecRec" class="form-label">Fecha de Recepción
+		</label>
+		<h:inputText class="form-input" disabled="true"
+			a:placeholder="Fecha de la recepción" value="#{receMB.fecha}" />
+
+		</fieldset>
+
+		<label for="lbl_Com" class="form-label">Comentario: </label>
+		<h:inputTextarea class="form-textarea" disabled="true" id="comentario"
+			value="#{receMB.comentario}" />
+
+		
+		
+
+		<p:growl showDetail="true" />
+
+		<p:commandButton class="btnConfirm" value="Borrar"
+			action="#{receMB.bajaRecepcion(receMB.select)}" update="@form">
+			<p:confirm header="Confirmar acción"
+				message="Seguro que desea eliminar esta recepción de productos?"
+				icon="ui-icon-alert" />
+		</p:commandButton>
+
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			<p:commandButton value="Sí" type="button"
+				action="#{receMB.vaciarCampos()}" styleClass="ui-confirmdialog-yes"
+				icon="ui-icon-check" />
+
+		</p:confirmDialog>
+		
+		
+		<h:commandButton class="btnCancel" 	value="Cancelar" action="Principal" />
+
+
+	</h:form>
+
+
+
+
+
+
+
+</body>
+</html>
+
+

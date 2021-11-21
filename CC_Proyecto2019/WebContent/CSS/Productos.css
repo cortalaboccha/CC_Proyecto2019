@@ -1,0 +1,186 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+
+
+body {
+	background: url(../Imagenes/bg_productos.jpg) no-repeat center top;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.form-cancelar{
+	border-top-left-radius: 0em;
+	border-top-right-radius: 0em;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	margin-top: 0%;
+	margin-bottom: 3%;
+}
+
+ form {
+	background: rgba(0, 117, 198, 0.6);
+	width: 90%;
+	max-width: 650px;
+	margin: auto;
+	padding: 5px 35px;
+	margin-left: 5%;
+	margin-top: 3%;
+	padding-bottom: 30px;
+	border-radius: 20px;
+	border-bottom-left-radius: 0em;
+	border-bottom-right-radius: 0em;
+	font-size: 1.2em;
+	font-family: Roboto;
+	font-weight: bold;
+}
+
+form h1{
+	font-weight: normal;
+	font-family: sans-serif;
+	color: #FFF;
+	text-align: center;
+	margin: 5%;
+}
+
+
+
+ form .form-label {
+	display: block;
+	color: black;
+	position: relative;
+	margin-top: 1em;
+	}
+
+
+
+
+ form select {
+	background: rgba(0, 0, 0, .7);
+	font-size: 16px;
+	width: 100%;
+	color: #FFF;
+	border-radius: 2px;
+}
+
+
+
+.botton {
+	border-color: white;
+	outline: none;
+	height: 50px;
+	background: #06A601;
+	color: #fff;
+	font-size: 1.3em;
+	border-radius: 10px;
+	width: 80%;
+	margin-left: 10%;
+	font-family: Roboto;
+	text-align: center;
+}
+
+
+
+.botton:hover,
+.botton:active,
+.botton:focus {
+  color: #fff;
+  background-color: #004000;
+}
+
+
+
+.btnCancel{
+	border-color: white;
+	outline: none;
+	height: 50px;
+	background: red;
+	color: #fff;
+	font-size: 1.3em;
+	border-radius: 10px;
+	width: 60%;
+	font-family: Roboto;
+	text-align: center;
+	margin-left: 20%;
+}
+
+.btnCancel:hover,
+.btnCancel:active,
+.btnCancel:focus {
+  color: #fff;
+  background-color: #800000;
+}
+
+fieldset {
+  padding: 0 20px 20px;
+  margin: 0 0 30px ;
+  border: 2px solid #ffffff;
+  background: #B8B8B8 ;
+  border-radius: 10px;
+}
+
+
+legend {
+  color: #ffffff;
+  background: rgba(0, 117, 198);
+  font-size: 1.2em;
+  
+  text-align: left;
+  padding: 5px;
+  margin: 0;
+  width: 10em;
+  border: 2px solid black;
+  border-radius: 5px;
+ }
+ 
+ .select{
+text-align: center;
+}
+
+.selectBox{
+text-align: center;
+margin-right: 100px;
+margin-top: 2%; 
+}
+
+.mostrar {
+	
+	position: absolute;
+	height: 35px;
+	width: 100px;
+	background: rgba(0, 117, 198, 0.6);
+	color: #fff;
+	font-size: 20px;
+	font-family: Roboto;
+}
+
+#legendSelect{
+	 color: #ffffff;
+  background: #800000;
+  font-size: 1.2em;
+  
+  text-align: center;
+  padding: 5px;
+  margin: 0;
+  width: 10em;
+  border: 2px solid black;
+  border-radius: 5px;
+ margin-left: auto;
+    margin-right: auto;
+}
+
+.msjError{
+background: red; 
+border-color: white; 
+color: black; 
+font-size: 0.8em; 	
+}
+
+.ui-inputfield {
+    width: 100%;
+}
+
+
