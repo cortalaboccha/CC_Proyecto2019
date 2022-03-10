@@ -33,7 +33,7 @@ public class BeanRenglones {
     
     
 	public void crearRenglonPedido(RenglonPedido renglonPedido) throws ServiciosException {
-		try {System.out.println("holaMundo");
+		try {
 				em.persist(renglonPedido);			
 					em.flush();
 			} catch (PersistenceException e) {
