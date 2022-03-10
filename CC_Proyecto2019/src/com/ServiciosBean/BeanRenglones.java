@@ -19,6 +19,7 @@ import com.exception.ServiciosException;
 @LocalBean
 public class BeanRenglones {
 
+	
     /**
      * Default constructor. 
      */
@@ -32,12 +33,11 @@ public class BeanRenglones {
     
     
 	public void crearRenglonPedido(RenglonPedido renglonPedido) throws ServiciosException {
-		try {
+		try {System.out.println("holaMundo");
 				em.persist(renglonPedido);			
 					em.flush();
 			} catch (PersistenceException e) {
-				throw new ServiciosException("No se pudo crear el renglon pedido");
-				}
+				throw new ServiciosException("No se pudo crear el renglon pedido");}
 		}
     
     
