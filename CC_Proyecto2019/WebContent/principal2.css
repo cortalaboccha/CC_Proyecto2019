@@ -1,0 +1,9 @@
+body{
+	background: url(../Imagenes/fondoInicio.jpg) no-repeat center top;
+	background-size: cover;
+}
+
+body:before {
+	
+	backdrop-filter: blur(6px);
+}

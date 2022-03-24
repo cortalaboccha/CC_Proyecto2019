@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<link rel="stylesheet" href="principal2.css"></link>
+
+<h:head>
+	<title>Usuarios</title>
+</h:head>
+<body>
+	<h:form id="form">
+		<div class="card crud-demo">
+			<p:growl id="messages" showDetail="true" />
+
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton value="Nuevo" icon="pi pi-plus"
+						actionListener="#{crudViewU.openNew}"
+						update=":form:manage-Usuario-content"
+						oncomplete="PF('manageUsuarioDialog').show()"
+						styleClass="ui-button-success" style="margin-right: .5rem">
+						<p:resetInput target=":form:manage-Usuario-content" />
+					</p:commandButton>
+					<p:commandButton id="delete-Usuarios-button"
+						value="#{crudViewU.deleteButtonMessage}" icon="pi pi-trash"
+						actionListener="#{crudViewU.deleteSelectedUsuarios}"
+						styleClass="ui-button-danger"
+						disabled="#{!crudViewU.hasSelectedUsuarios()}" update="@this">
+						<p:confirm header="Confirmation"
+							message="Delete the selected Usuarios?"
+							icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:fileUpload mode="simple" skinSimple="true" label="Import"
+						chooseIcon="pi pi-download" />
+					<p:commandButton value="Export" icon="pi pi-upload"
+						styleClass="ui-button-help" ajax="false">
+						<p:dataExporter type="pdf" target="dt-Usuarios"
+							fileName="Usuarios" />
+					</p:commandButton>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+<br></br>
+
+			<p:dataTable id="dt-Usuarios" widgetVar="dtUsuariosUsuarios"
+				var="Usuario" value="#{crudViewU.usuarios}" reflow="true"
+				styleClass="Usuarios-table"
+				selection="#{crudViewU.selectedUsuarios}" rowKey="#{Usuario.id}"
+				paginator="true" rows="10" rowSelectMode="add"
+				paginatorPosition="bottom">
+				<f:facet name="header">
+					<div class="Usuarios-table-header">
+						<span style="font-weight: bold">USUARIOS</span> <span
+							class="filter-container ui-input-icon-left"> <i
+							class="pi pi-search"></i> <p:inputText id="globalFilter"
+								onkeyup="PF('dtUsuarios').filter()" placeholder="Buscar" />
+						</span>
+
+					</div>
+				</f:facet>
+
+				<p:ajax event="rowSelect" update=":form:delete-Usuarios-button" />
+				<p:ajax event="rowUnselect" update=":form:delete-Usuarios-button" />
+				<p:ajax event="rowSelectCheckbox"
+					update=":form:delete-Usuarios-button" />
+				<p:ajax event="rowUnselectCheckbox"
+					update=":form:delete-Usuarios-button" />
+				<p:ajax event="toggleSelect" update=":form:delete-Usuarios-button" />
+
+				<p:column selectionMode="multiple" exportable="false"></p:column>
+
+				<p:column headerText="Id Usuario" sortBy="#{Usuario.id}"
+					filterBy="#{Usuario.id}">
+					<h:outputText value="#{Usuario.id}" />
+				</p:column>
+				<p:column headerText="Nombre" sortBy="#{Usuario.nombre}"
+					filterBy="#{Usuario.nombre}">
+					<h:outputText value="#{Usuario.nombre}" id="fecha" />
+				</p:column>
+				<p:column headerText="Apellido" exportable="false">
+					<h:outputText value="#{Usuario.apellido}" />
+				</p:column>
+				<p:column headerText="Mail" sortBy="#{Usuario.mail}">
+					<h:outputText value="#{Usuario.mail}" style="font-weight: 700">
+
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Cedula" sortBy="#{Usuario.cedula}"
+					filterBy="#{Usuario.cedula}">
+					<h:outputText value="#{Usuario.cedula}" />
+				</p:column>
+				<p:column headerText="Telefono" sortBy="#{Usuario.telefono}">
+					<h:outputText value="#{Usuario.telefono}" readonly="true" />
+				</p:column>
+
+				<p:column exportable="false">
+					<p:commandButton icon="pi pi-pencil"
+						update=":form:manage-Usuario-content"
+						oncomplete="PF('manageUsuarioDialog').show()"
+						styleClass="edit-button rounded-button ui-button-success"
+						process="@this">
+						<f:setPropertyActionListener value="#{Usuario}"
+							target="#{crudViewU.selectedUsuario}" />
+						<p:resetInput target=":form:manage-Usuario-content" />
+					</p:commandButton>
+					<p:commandButton class="ui-button-warning rounded-button"
+						icon="pi pi-trash" process="@this"
+						oncomplete="PF('deleteUsuarioDialog').show()">
+						<f:setPropertyActionListener value="#{Usuario}"
+							target="#{crudViewU.selectedUsuario}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+
+
+			<p:dialog header="Nuevo Usuario" showEffect="fade" modal="true"
+				widgetVar="manageUsuarioDialog" responsive="true"
+				styleClass="ui-button-outlined" blockScroll="true"
+				style="overflow: scroll;
+    max-height: 80%;">
+				<p:outputPanel id="manage-Usuario-content" class="ui-fluid">
+
+					<p:outputPanel rendered="#{not empty crudViewU.selectedUsuario}">
+
+						<p:divider align="center">
+							<span class="ui-tag">Datos</span>
+						</p:divider>
+
+						<div class="p-field">
+							<p:outputLabel for="idU">Id Usuario</p:outputLabel>
+							<p:inputText id="idU" value="#{crudViewU.selectedUsuario.id}"
+								required="true" />
+						</div>
+						<div class="p-field">
+							<p:outputLabel for="nombre">Nombre</p:outputLabel>
+							<p:inputText id="nombre"
+								value="#{crudViewU.selectedUsuario.nombre}" required="true" />
+						</div>
+
+						<div class="p-field">
+
+							<p:outputLabel for="apellido">Apellido</p:outputLabel>
+							<p:inputText id="apellido"
+								value="#{crudViewU.selectedUsuario.apellido}" required="true" />
+						</div>
+						<div class="p-field">
+						<p:outputLabel for="mail">Mail</p:outputLabel>
+						<p:inputNumber id="mail" value="#{crudViewU.selectedUsuario.mail}"
+							required="true" />
+		</div>
+		<div class="p-field">
+			<p:outputLabel for="ci">Cedula Identidad</p:outputLabel>
+			<p:inputText id="ci" value="#{crudViewU.selectedUsuario.cedula}"
+				required="true" />
+		</div>
+		<div class="p-field">
+			<p:outputLabel for="tel">Telefono</p:outputLabel>
+			<p:inputNumber id="tel" value="#{crudViewU.selectedUsuario.telefono}"
+				required="true" />
+
+
+
+		</div>
+
+
+
+
+
+		</p:outputPanel>
+		</p:outputPanel>
+
+
+		<f:facet name="footer">
+			<p:commandButton value="Guardar" icon="pi pi-check"
+				actionListener="#{crudViewU.saveUsuario}"
+				update="manage-Usuario-content"
+				process="manage-Usuario-content @this" />
+			<p:commandButton value="Cancelar" icon="pi pi-times"
+				onclick="PF('manageUsuarioDialog').hide()"
+				class="ui-button-secondary" />
+		</f:facet>
+		</p:dialog>
+
+
+		<p:confirmDialog widgetVar="deleteUsuarioDialog" showEffect="fade"
+			width="300" message="Eliminar este Usuario?" header="Confirmar"
+			severity="warn">
+			<p:commandButton value="Sí" icon="pi pi-check"
+				actionListener="#{crudViewU.deleteUsuario}" process="@this"
+				oncomplete="PF('deleteUsuarioDialog').hide()" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-button-secondary" icon="pi pi-times"
+				onclick="PF('deleteUsuarioDialog').hide()" />
+		</p:confirmDialog>
+
+		<p:confirmDialog global="true" showEffect="fade" width="300">
+			<p:commandButton value="Sí" type="button"
+				styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no ui-button-secondary"
+				icon="pi pi-times" />
+		</p:confirmDialog>
+		
+		<br></br>
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton value="Atrás" icon="pi pi-undo" action="CriaT.xhtml"
+						styleClass="ui-button-secondary" style="margin-right: .5rem">
+					</p:commandButton>
+
+				</p:toolbarGroup>
+			</p:toolbar>
+		
+		</div>
+	</h:form>
+</body>
+</html>
